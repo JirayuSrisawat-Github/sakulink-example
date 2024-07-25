@@ -5,9 +5,7 @@ export const event: IEvent<"interactionCreate"> = {
 	run: async (client, interaction) => {
 		if (interaction.isCommand()) {
 			const command = client.commands.get(interaction.commandName);
-
 			const options = <CommandInteractionOptionResolver>interaction.options;
-
 			if (command.category === "music") {
 				if (!(<GuildMember>interaction.member!).voice.channelId)
 					return await interaction.reply({
