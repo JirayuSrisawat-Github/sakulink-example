@@ -1,5 +1,5 @@
 import { Client, Collection } from "discord.js";
-import { Manager } from "sakulink";
+import { Manager, Player, type Payload, type WebSocketClosedEvent } from "sakulink";
 import { nodes, token } from "../config";
 import { join } from "path";
 import { readdirSync } from "fs";
@@ -9,7 +9,7 @@ export class SakulinkClient extends Client {
 	public readonly manager = new Manager({
 		nodes: nodes,
 		defaultSearchPlatform: "youtube music",
-		send: (guild, payload) => this.guilds.cache.get(guild)!.shard.send(payload),
+		send: (guild: string, payload: Payload) => this.guilds.cache.get(guild)!.shard.send(payload),
 	});
 
 	public constructor() {
@@ -36,8 +36,7 @@ export class SakulinkClient extends Client {
 			let { event } = await import(join(__dirname, "..", "players", file));
 
 			console.log(`Player event loaded ${event.name}`);
-			// @ts-ignore
-			this.manager.on(event.name, (...args: IPlayerEvents[]) => event.run(...args));
+			this.manager.on(event.name, (player: Player, payload: WebSocketClosedEvent) => event.run(player, payload));
 
 			delete require.cache[require.resolve(join(__dirname, "..", "players", file))];
 		});
@@ -61,7 +60,7 @@ export class SakulinkClient extends Client {
 
 			this.on("ready", async () => {
 				this.application?.commands.set(commands);
-				this.manager.init(this.user!.id);
+				this.manager.init(this.user?.id);
 			});
 		});
 	}

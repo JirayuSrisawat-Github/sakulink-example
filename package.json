@@ -2,6 +2,9 @@
   "name": "sakulink-example",
   "module": "src/index.ts",
   "type": "module",
+  "scripts": {
+    "start": "bun src/index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/common-tags": "^1.8.4",
@@ -16,9 +19,6 @@
     "common-tags": "^1.8.2",
     "discord.js": "^14.15.3",
     "ms": "^2.1.3",
-    "sakulink": "^1.2.0"
-  },
-  "scripts": {
-    "start": "bun src/index.ts"
+    "sakulink": "latest"
   }
 }
