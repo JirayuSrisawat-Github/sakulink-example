@@ -9,7 +9,7 @@
     "@types/bun": "latest",
     "@types/common-tags": "^1.8.4",
     "@types/ms": "^0.7.34",
-    "@types/node": "^20.14.10",
+    "@types/node": "^22.0.0",
     "bun-types": "^1.1.20"
   },
   "peerDependencies": {
