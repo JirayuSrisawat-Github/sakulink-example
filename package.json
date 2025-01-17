@@ -8,7 +8,7 @@
   "devDependencies": {
     "@types/bun": "latest",
     "@types/common-tags": "^1.8.4",
-    "@types/ms": "^0.7.34",
+    "@types/ms": "^2.0.0",
     "@types/node": "^22.0.0",
     "bun-types": "^1.1.20"
   },
